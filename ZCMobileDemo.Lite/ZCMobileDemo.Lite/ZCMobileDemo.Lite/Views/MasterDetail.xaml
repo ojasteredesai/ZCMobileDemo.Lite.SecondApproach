@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<masterDetail:MasterDetailControl  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:masterDetail="clr-namespace:ZCMobileDemo.Lite.Views"
+             xmlns:ctrl="clr-namespace:ZCMobileDemo.Lite.Controls"
+             x:Class="ZCMobileDemo.Lite.Views.MasterDetail" BackgroundColor="#01446b">
+    <masterDetail:MasterDetailControl.SideContent>
+        <ctrl:Accordion x:Name="one" />
+    </masterDetail:MasterDetailControl.SideContent>
+</masterDetail:MasterDetailControl>
