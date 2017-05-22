@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ZCMobileDemo.Lite"
+             x:Class="ZCMobileDemo.Lite.MainPage" StyleId="datacenter" x:Name="mainPage">
+    <StackLayout x:Name="mainStack" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" >
+        <Label Text="Data Center Page" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="Red" FontSize="Large"></Label>
+        <Button Text="Go to Login Type Page" Clicked="Button_Clicked" FontSize="Large"></Button>
+        <Button x:Name="backButton" Text="Back" Clicked="Button_Clicked_1" FontSize="Large" IsVisible="False"></Button>
+    </StackLayout>
+</ContentPage>

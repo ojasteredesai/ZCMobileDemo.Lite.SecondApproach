@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ZCMobileDemo.Lite.Views.Timesheet.Page3" StyleId="page3">
+    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+        <Label x:Name="PageTitle" Text="{Binding Header1}" IsVisible="False"></Label>
+        <Label Text="Page3" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="Red" FontSize="Large"></Label>
+        <Entry Text="{Binding Messsge1}" HeightRequest="40" WidthRequest="80" BackgroundColor="LightBlue" HorizontalOptions="FillAndExpand"></Entry>
+        <Entry Text="{Binding Messsge2}" HeightRequest="40" WidthRequest="80" BackgroundColor="LightBlue" HorizontalOptions="FillAndExpand"></Entry>
+        <Button Text="Go to Page 4" Clicked="Button_Clicked" FontSize="Large"></Button>
+        <Button Text="Go to Previous Page" Clicked="Button_Clicked_1" FontSize="Large"></Button>
+    </StackLayout>  
+</ContentPage>
