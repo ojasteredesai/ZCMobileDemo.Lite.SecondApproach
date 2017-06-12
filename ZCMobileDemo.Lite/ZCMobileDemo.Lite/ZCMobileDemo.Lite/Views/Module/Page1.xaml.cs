@@ -17,7 +17,10 @@ namespace ZCMobileDemo.Lite.Views.Timesheet
         #region Constructors
         public Page1()
         {
+
             InitializeComponent();
+            firstBoxView.WidthRequest = App.Current.MainPage.Width / 2;
+            secondBoxView.WidthRequest = App.Current.MainPage.Width / 2;
             var model = App.ApplicationDataViewModel as Page1ViewModel;
             this.BindingContext = (model != null ? model : (new Page1ViewModel()));
         }
