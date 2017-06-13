@@ -155,66 +155,83 @@ namespace ZCMobileDemo.Lite.Views
         #region Private Methods
         void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-
-            double totalDetailContainerWidth = 0;
-            double detailContainerTop = (Device.Idiom == TargetIdiom.Tablet) ? 64 : 44;
-
-            //App.MasterDetailVM.IsExecuting = true;
+            var MDV = this.BindingContext as MasterDetailViewModel;
+            App.MasterDetailVM.IsExecuting = true;
             App.UserSession.SideContentVisibility = (!App.UserSession.SideContentVisibility);
-            //OnPropertyChanged("SideContentVisible");
-            //App.MasterDetailVM.IsExecuting = false;
-
+            OnPropertyChanged("SideContentVisible");
             if (App.UserSession.SideContentVisibility)
             {
+                App.MasterDetailVM.DetailContainerAndHeaderGridRowLeft = 262;
+                App.MasterDetailVM.DetailContainerWidth = 375;
+                App.MasterDetailVM.HeaderGridRowWidth = 375;
 
-                if (Device.Idiom == TargetIdiom.Phone || (App.Current.MainPage.Height > App.Current.MainPage.Width))
-                {
-                    App.MasterDetailVM.SideContentWidth = (Device.Idiom == TargetIdiom.Tablet) ? (App.Current.MainPage.Width * 0.5) : (App.Current.MainPage.Width * 0.3);
-                    totalDetailContainerWidth = (App.Current.MainPage.Width - App.MasterDetailVM.SideContentWidth);
-                    DetailContainer.LayoutTo(new Rectangle(App.MasterDetailVM.SideContentWidth, detailContainerTop, App.Current.MainPage.Width, App.Current.MainPage.Height), 50, null);
-                    headerGridRow.LayoutTo(new Rectangle(App.MasterDetailVM.SideContentWidth, 0, App.Current.MainPage.Width, App.Current.MainPage.Height), 50, null);
-                }
-                else
-                {
-                    App.MasterDetailVM.SideContentWidth = App.Current.MainPage.Width * 0.7;
-                    totalDetailContainerWidth = (App.Current.MainPage.Width - App.MasterDetailVM.SideContentWidth);
-                    if (App.MasterDetailVM.PageCount > 1)
-                    {
-                        DetailContainer.LayoutTo(new Rectangle(App.MasterDetailVM.SideContentWidth, detailContainerTop, (totalDetailContainerWidth / 2), App.Current.MainPage.Height), 50, null);
-                        DetailContainer1.LayoutTo(new Rectangle(((totalDetailContainerWidth / 2) + App.MasterDetailVM.SideContentWidth), detailContainerTop, (totalDetailContainerWidth / 2), App.Current.MainPage.Height), 50, null);
-                    }
-                    else
-                    {
-                        DetailContainer.LayoutTo(new Rectangle(App.MasterDetailVM.SideContentWidth, detailContainerTop, totalDetailContainerWidth, App.Current.MainPage.Height), 50, null);
-                    }
-
-                    headerGridRow.LayoutTo(new Rectangle(App.MasterDetailVM.SideContentWidth, 0, totalDetailContainerWidth, App.Current.MainPage.Height), 50, null);
-                }
-                OnPropertyChanged("SideContentVisible");
             }
             else
             {
-                if (Device.Idiom == TargetIdiom.Phone || (App.Current.MainPage.Height > App.Current.MainPage.Width))
-                {
-                    DetailContainer.LayoutTo(new Rectangle(0, detailContainerTop, App.Current.MainPage.Width, App.Current.MainPage.Height), 50, null);
-                }
-                else
-                {
-                    if (App.MasterDetailVM.PageCount > 1)
-                    {
-                        DetailContainer.LayoutTo(new Rectangle(0, detailContainerTop, App.Current.MainPage.Width / 2, App.Current.MainPage.Height), 50, null);
-                        DetailContainer1.LayoutTo(new Rectangle(App.Current.MainPage.Width / 2, detailContainerTop, App.Current.MainPage.Width / 2, App.Current.MainPage.Height), 50, null);
-                    }
-                    else
-                    {
-                        DetailContainer.LayoutTo(new Rectangle(0, detailContainerTop, App.Current.MainPage.Width, App.Current.MainPage.Height), 50, null);
-                    }
-
-                }
-                headerGridRow.LayoutTo(new Rectangle(0, 0, App.Current.MainPage.Width, App.Current.MainPage.Height), 50, null);
-                OnPropertyChanged("SideContentVisible");
+                App.MasterDetailVM.DetailContainerAndHeaderGridRowLeft = 0;
+                App.MasterDetailVM.DetailContainerWidth = 0;
+                App.MasterDetailVM.HeaderGridRowWidth = 375;
 
             }
+            //AdjustApplicationUI();
+            App.MasterDetailVM.IsExecuting = false;
+
+            //double totalDetailContainerWidth = 0;
+            //double detailContainerTop = (Device.Idiom == TargetIdiom.Tablet) ? 64 : 44;
+
+
+            //App.UserSession.SideContentVisibility = (!App.UserSession.SideContentVisibility);
+            //if (App.UserSession.SideContentVisibility)
+            //{
+
+            //    if (Device.Idiom == TargetIdiom.Phone || (App.Current.MainPage.Height > App.Current.MainPage.Width))
+            //    {
+            //        App.MasterDetailVM.SideContentWidth = (Device.Idiom == TargetIdiom.Tablet) ? (App.Current.MainPage.Width * 0.5) : (App.Current.MainPage.Width * 0.3);
+            //        totalDetailContainerWidth = (App.Current.MainPage.Width - App.MasterDetailVM.SideContentWidth);
+            //        DetailContainer.LayoutTo(new Rectangle(App.MasterDetailVM.SideContentWidth, detailContainerTop, App.Current.MainPage.Width, App.Current.MainPage.Height), 50, null);
+            //        headerGridRow.LayoutTo(new Rectangle(App.MasterDetailVM.SideContentWidth, 0, App.Current.MainPage.Width, App.Current.MainPage.Height), 50, null);
+            //    }
+            //    else
+            //    {
+            //        App.MasterDetailVM.SideContentWidth = App.Current.MainPage.Width * 0.7;
+            //        totalDetailContainerWidth = (App.Current.MainPage.Width - App.MasterDetailVM.SideContentWidth);
+            //        if (App.MasterDetailVM.PageCount > 1)
+            //        {
+            //            DetailContainer.LayoutTo(new Rectangle(App.MasterDetailVM.SideContentWidth, detailContainerTop, (totalDetailContainerWidth / 2), App.Current.MainPage.Height), 50, null);
+            //            DetailContainer1.LayoutTo(new Rectangle(((totalDetailContainerWidth / 2) + App.MasterDetailVM.SideContentWidth), detailContainerTop, (totalDetailContainerWidth / 2), App.Current.MainPage.Height), 50, null);
+            //        }
+            //        else
+            //        {
+            //            DetailContainer.LayoutTo(new Rectangle(App.MasterDetailVM.SideContentWidth, detailContainerTop, totalDetailContainerWidth, App.Current.MainPage.Height), 50, null);
+            //        }
+
+            //        headerGridRow.LayoutTo(new Rectangle(App.MasterDetailVM.SideContentWidth, 0, totalDetailContainerWidth, App.Current.MainPage.Height), 50, null);
+            //    }
+            //    OnPropertyChanged("SideContentVisible");
+            //}
+            //else
+            //{
+            //    if (Device.Idiom == TargetIdiom.Phone || (App.Current.MainPage.Height > App.Current.MainPage.Width))
+            //    {
+            //        DetailContainer.LayoutTo(new Rectangle(0, detailContainerTop, App.Current.MainPage.Width, App.Current.MainPage.Height), 50, null);
+            //    }
+            //    else
+            //    {
+            //        if (App.MasterDetailVM.PageCount > 1)
+            //        {
+            //            DetailContainer.LayoutTo(new Rectangle(0, detailContainerTop, App.Current.MainPage.Width / 2, App.Current.MainPage.Height), 50, null);
+            //            DetailContainer1.LayoutTo(new Rectangle(App.Current.MainPage.Width / 2, detailContainerTop, App.Current.MainPage.Width / 2, App.Current.MainPage.Height), 50, null);
+            //        }
+            //        else
+            //        {
+            //            DetailContainer.LayoutTo(new Rectangle(0, detailContainerTop, App.Current.MainPage.Width, App.Current.MainPage.Height), 50, null);
+            //        }
+
+            //    }
+            //    headerGridRow.LayoutTo(new Rectangle(0, 0, App.Current.MainPage.Width, App.Current.MainPage.Height), 50, null);
+            //    OnPropertyChanged("SideContentVisible");
+
+            //}
 
 
         }
@@ -223,6 +240,67 @@ namespace ZCMobileDemo.Lite.Views
             App.MasterDetailVM.IsExecuting = true;
             App.MasterDetailVM.PopAsync1();
             App.MasterDetailVM.IsExecuting = false;
+        }
+        //Handle Application UI to resolve Shrink Issue
+        void AdjustApplicationUI()
+        {
+            if (App.UserSession.SideContentVisibility)
+            {
+
+                if (Device.Idiom == TargetIdiom.Phone || (App.Current.MainPage.Height > App.Current.MainPage.Width))
+                {
+                    App.MasterDetailVM.SideContentWidth = (Device.Idiom == TargetIdiom.Tablet) ? (App.Current.MainPage.Width * 0.5) : (App.Current.MainPage.Width * 0.3);
+                    App.MasterDetailVM.TotalDetailContainerWidth = (App.Current.MainPage.Width - App.MasterDetailVM.SideContentWidth);
+                    App.MasterDetailVM.DetailContainerAndHeaderGridRowLeft = App.MasterDetailVM.SideContentWidth;
+                    App.MasterDetailVM.DetailContainerWidth = App.Current.MainPage.Width;
+                    App.MasterDetailVM.HeaderGridRowWidth = App.Current.MainPage.Width;
+                }
+                else
+                {
+                    App.MasterDetailVM.SideContentWidth = App.Current.MainPage.Width * 0.7;
+                    App.MasterDetailVM.TotalDetailContainerWidth = (App.Current.MainPage.Width - App.MasterDetailVM.SideContentWidth);
+                    if (App.MasterDetailVM.PageCount > 1)
+                    {
+                        App.MasterDetailVM.DetailContainerAndHeaderGridRowLeft = App.MasterDetailVM.SideContentWidth;
+                        App.MasterDetailVM.DetailContainerWidth = App.MasterDetailVM.TotalDetailContainerWidth / 2;
+                        App.MasterDetailVM.DetailContainer1Left = ((App.MasterDetailVM.TotalDetailContainerWidth / 2) + App.MasterDetailVM.SideContentWidth);
+                        App.MasterDetailVM.DetailContainer1Width = (App.MasterDetailVM.TotalDetailContainerWidth / 2);
+                    }
+                    else
+                    {
+                        App.MasterDetailVM.DetailContainerAndHeaderGridRowLeft = App.MasterDetailVM.SideContentWidth;
+                        App.MasterDetailVM.DetailContainerWidth = App.MasterDetailVM.TotalDetailContainerWidth;
+
+                    }
+                    App.MasterDetailVM.HeaderGridRowWidth = App.MasterDetailVM.TotalDetailContainerWidth;
+                }
+
+            }
+            else
+            {
+                if (Device.Idiom == TargetIdiom.Phone || (App.Current.MainPage.Height > App.Current.MainPage.Width))
+                {
+                    App.MasterDetailVM.DetailContainerAndHeaderGridRowLeft = 0;
+                    App.MasterDetailVM.DetailContainerWidth = App.Current.MainPage.Width;
+                }
+                else
+                {
+                    if (App.MasterDetailVM.PageCount > 1)
+                    {
+                        App.MasterDetailVM.DetailContainerAndHeaderGridRowLeft = 0;
+                        App.MasterDetailVM.DetailContainerWidth = App.Current.MainPage.Width / 2;
+                        App.MasterDetailVM.DetailContainer1Left = App.Current.MainPage.Width / 2;
+                        App.MasterDetailVM.DetailContainer1Width = App.Current.MainPage.Width / 2;
+                    }
+                    else
+                    {
+                        App.MasterDetailVM.DetailContainerAndHeaderGridRowLeft = 0;
+                        App.MasterDetailVM.DetailContainerWidth = App.Current.MainPage.Width;
+                    }
+
+                }
+                App.MasterDetailVM.HeaderGridRowWidth = App.Current.MainPage.Width;
+            }
         }
         #endregion
     }

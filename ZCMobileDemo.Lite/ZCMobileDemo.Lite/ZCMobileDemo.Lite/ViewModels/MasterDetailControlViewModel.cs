@@ -35,6 +35,13 @@ namespace ZCMobileDemo.Lite.ViewModels
         private bool hamburgerVisibility = false;
         private bool popAsyncRequest = false;
         private double sideContentWidth = 0;
+        private int detailContainerTop = (Device.Idiom == TargetIdiom.Tablet) ? 64 : 44;
+        private double totalDetailContainerWidth = 0;
+        private double detailContainerAndHeaderGridRowLeft = 0;
+        private double detailContainer1Left = 0;
+        private double detailContainerWidth = 0;
+        private double detailContainer1Width = 0;
+        private double headerGridRowWidth = 0;
         #endregion
 
         #region Public Properties
@@ -300,8 +307,353 @@ namespace ZCMobileDemo.Lite.ViewModels
 
             }
         }
+        //Shrink Issue Related MVVM Properties
+        public int DetailContainerTop
+        {
+            get
+            {
+                return detailContainerTop;
+            }
+            set
+            {
+                detailContainerTop = value;
+                RaisePropertyChanged();
+            }
+        }
+        public double TotalDetailContainerWidth
+        {
+            get
+            {
+                if (App.IsUSerLoggedIn)
+                {
+                    totalDetailContainerWidth = (App.Current.MainPage.Width - SideContentWidth);
+                    return totalDetailContainerWidth;
+                }
+                else
+                {
+                    totalDetailContainerWidth = 0;
+                    return totalDetailContainerWidth;
+                }
+
+            }
+
+            set
+            {
+                totalDetailContainerWidth = value;
+                RaisePropertyChanged();
+
+            }
+        }
+        public double DetailContainerAndHeaderGridRowLeft
+        {
+            get
+            {
+                return detailContainerAndHeaderGridRowLeft;
+                //if (App.IsUSerLoggedIn)
+                //{
+                //    if (App.UserSession.SideContentVisibility)
+                //    {
+
+                //        detailContainerAndHeaderGridRowLeft = SideContentWidth;
+                //        return detailContainerAndHeaderGridRowLeft;
+
+                //    }
+                //    else
+                //    {
+                //        detailContainerAndHeaderGridRowLeft = 0;
+                //        return detailContainerAndHeaderGridRowLeft;
+
+                //    }
+                //}
+                //else
+                //{
+                //    detailContainerAndHeaderGridRowLeft = 0;
+                //    return detailContainerAndHeaderGridRowLeft;
+                //}
+
+            }
+
+            set
+            {
+                detailContainerAndHeaderGridRowLeft = value;
+                RaisePropertyChanged();
+
+            }
+        }
+        public double DetailContainer1Left
+        {
+            get
+            {
+                return detailContainerAndHeaderGridRowLeft;
+                //if (App.IsUSerLoggedIn)
+                //{
+                //    if (App.UserSession.SideContentVisibility)
+                //    {
+
+                //        if (Device.Idiom == TargetIdiom.Phone || (App.Current.MainPage.Height > App.Current.MainPage.Width))
+                //        {
+                //            detailContainer1Left = 0;
+                //            return detailContainerAndHeaderGridRowLeft;
+                //        }
+                //        else
+                //        {
+                //            if (PageCount > 1)
+                //            {
+                //                detailContainer1Left = (totalDetailContainerWidth / 2 + SideContentWidth);
+                //                return detailContainerAndHeaderGridRowLeft;
+
+                //            }
+                //            else
+                //            {
+                //                detailContainer1Left = 0;
+                //                return detailContainerAndHeaderGridRowLeft;
+                //            }
+
+
+                //        }
+
+                //    }
+                //    else
+                //    {
+                //        if (Device.Idiom == TargetIdiom.Phone || (App.Current.MainPage.Height > App.Current.MainPage.Width))
+                //        {
+                //            detailContainer1Left = 0;
+                //            return detailContainerAndHeaderGridRowLeft;
+                //        }
+                //        else
+                //        {
+                //            if (App.MasterDetailVM.PageCount > 1)
+                //            {
+                //                detailContainer1Left = App.Current.MainPage.Width / 2;
+                //                return detailContainerAndHeaderGridRowLeft;
+                //            }
+                //            else
+                //            {
+                //                detailContainer1Left = 0;
+                //                return detailContainerAndHeaderGridRowLeft;
+                //            }
+
+                //        }
+                //    }
+
+                //}
+                //else
+                //{
+                //    detailContainer1Left = 0;//App.Current.MainPage.Width;
+                //    return detailContainerAndHeaderGridRowLeft;
+                //}
+
+            }
+
+            set
+            {
+                detailContainer1Left = value;
+                RaisePropertyChanged();
+
+            }
+        }
+        public double DetailContainerWidth
+        {
+            get
+            {
+                return detailContainerWidth;
+                //if (App.IsUSerLoggedIn)
+                //{
+                //    if (App.UserSession.SideContentVisibility)
+                //    {
+
+                //        if (Device.Idiom == TargetIdiom.Phone || (App.Current.MainPage.Height > App.Current.MainPage.Width))
+                //        {
+
+                //            detailContainerWidth = App.Current.MainPage.Width;
+                //            return detailContainerWidth;
+
+                //        }
+                //        else
+                //        {
+
+                //            if (App.MasterDetailVM.PageCount > 1)
+                //            {
+                //                detailContainerWidth = TotalDetailContainerWidth / 2;
+                //                return detailContainerWidth;
+                //            }
+                //            else
+                //            {
+                //                detailContainerWidth = TotalDetailContainerWidth;
+                //                return detailContainerWidth;
+
+                //            }
+
+
+                //        }
+
+                //    }
+                //    else
+                //    {
+                //        if (Device.Idiom == TargetIdiom.Phone || (App.Current.MainPage.Height > App.Current.MainPage.Width))
+                //        {
+                //            detailContainerWidth = App.Current.MainPage.Width;
+                //            return detailContainerWidth;
+                //        }
+                //        else
+                //        {
+                //            if (App.MasterDetailVM.PageCount > 1)
+                //            {
+                //                detailContainerWidth = App.Current.MainPage.Width / 2;
+                //                return detailContainerWidth;
+                //            }
+                //            else
+                //            {
+                //                detailContainerWidth = App.Current.MainPage.Width;
+                //                return detailContainerWidth;
+
+                //            }
+
+                //        }
+                //    }
+                //}
+                //else
+                //{
+                //    detailContainerWidth = 0;//App.Current.MainPage.Width;
+                //    return detailContainerWidth;
+                //}
+
+            }
+
+            set
+            {
+                detailContainerWidth = value;
+                RaisePropertyChanged();
+
+            }
+        }
+        public double DetailContainer1Width
+        {
+            get
+            {
+                return detailContainer1Width;
+                //if (App.IsUSerLoggedIn)
+                //{
+                //    if (App.UserSession.SideContentVisibility)
+                //    {
+
+                //        if (Device.Idiom == TargetIdiom.Phone || (App.Current.MainPage.Height > App.Current.MainPage.Width))
+                //        {
+
+                //            detailContainer1Width = 0;
+                //            return detailContainer1Width;
+
+                //        }
+                //        else
+                //        {
+
+                //            if (PageCount > 1)
+                //            {
+                //                detailContainer1Width = TotalDetailContainerWidth / 2;
+                //                return detailContainer1Width;
+                //            }
+                //            else
+                //            {
+                //                detailContainer1Width = 0;
+                //                return detailContainer1Width;
+
+                //            }
+
+
+                //        }
+
+                //    }
+                //    else
+                //    {
+                //        if (Device.Idiom == TargetIdiom.Phone || (App.Current.MainPage.Height > App.Current.MainPage.Width))
+                //        {
+                //            detailContainer1Width = 0;
+                //            return detailContainer1Width;
+                //        }
+                //        else
+                //        {
+                //            if (PageCount > 1)
+                //            {
+                //                detailContainer1Width = App.Current.MainPage.Width / 2;
+                //                return detailContainer1Width;
+                //            }
+                //            else
+                //            {
+                //                detailContainer1Width = 0;
+                //                return detailContainer1Width;
+
+                //            }
+
+                //        }
+                //    }
+                //}
+                //else
+                //{
+                //    detailContainer1Width = 0;
+                //    return detailContainer1Width;
+                //}
+
+            }
+
+            set
+            {
+                detailContainer1Width = value;
+                RaisePropertyChanged();
+
+            }
+        }
+        public double HeaderGridRowWidth
+        {
+            get
+            {
+                return headerGridRowWidth;
+                //if (App.IsUSerLoggedIn)
+                //{
+                //    if (App.UserSession.SideContentVisibility)
+                //    {
+
+                //        if (Device.Idiom == TargetIdiom.Phone || (App.Current.MainPage.Height > App.Current.MainPage.Width))
+                //        {
+
+                //            headerGridRowWidth = App.Current.MainPage.Width;
+                //            return headerGridRowWidth;
+
+                //        }
+                //        else
+                //        {
+
+                //            headerGridRowWidth = totalDetailContainerWidth;
+                //            return headerGridRowWidth;
+
+
+                //        }
+
+                //    }
+                //    else
+                //    {
+                //        headerGridRowWidth = App.Current.MainPage.Width;
+                //        return headerGridRowWidth;
+                //    }
+                //}
+                //else
+                //{
+                //    headerGridRowWidth = 0;//App.Current.MainPage.Width;
+                //    return headerGridRowWidth;
+                //}
+
+            }
+
+            set
+            {
+                headerGridRowWidth = value;
+                RaisePropertyChanged();
+
+            }
+        }
+
         #endregion
-        #endregion
+
+
 
         #region Push and Pop Methods
         public void PushAsync(ZCMobileNavigationData navigationData)
@@ -599,3 +951,4 @@ namespace ZCMobileDemo.Lite.ViewModels
         #endregion
     }
 }
+#endregion
